@@ -34,9 +34,9 @@ def backtest_strategy(df):
             elif holding:
                 holding_period = (row['Date'] - entry_date).days
                 exit_conditions = (
-                    row['VIX'] >= 18 or 
-                    row['Nifty_PE'] >= 25 or 
-                    holding_period >= 10
+                    row['VIX'] >= 19 or 
+                    row['Nifty_PE'] >= 23 or 
+                    holding_period >= 5
                 )
 
                 if exit_conditions:
