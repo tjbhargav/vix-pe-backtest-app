@@ -26,7 +26,7 @@ def backtest_strategy(df):
         row = df.iloc[i]
 
         try:
-            if not holding and row['VIX'] <= 14.5 and row['Nifty_PE'] <= 21.5:
+            if not holding and row['VIX'] <= 12.5 or row['Nifty_PE'] <= 20:
                 entry_price = row['Nifty_Close']
                 entry_date = row['Date']
                 holding = True
@@ -35,7 +35,7 @@ def backtest_strategy(df):
                 holding_period = (row['Date'] - entry_date).days
                 exit_conditions = (
                     row['VIX'] >= 18 or 
-                    row['Nifty_PE'] >= 22 or 
+                    row['Nifty_PE'] >= 23 or 
                     holding_period >= 30
                 )
 
