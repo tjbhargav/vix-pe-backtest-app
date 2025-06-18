@@ -30,6 +30,7 @@ st.write(f"Total Interest Earned: ₹{interest_earned:,.2f}")
 # Optional: Visualize
 import matplotlib.pyplot as plt
 import numpy as np
+import pandas as pd
 
 years_list = np.arange(0, years + 1)
 balance = [principal * (1 + r_decimal / n) ** (n * t) for t in years_list]
@@ -41,6 +42,15 @@ ax.set_xlabel("Years")
 ax.set_ylabel("Amount (₹)")
 ax.grid(True)
 st.pyplot(fig)
+
+# Show yearly gains in a table
+st.subheader("📅 Yearly Growth Table")
+yearly_data = pd.DataFrame({
+    "Year": years_list,
+    "Year-End Balance (₹)": balance,
+    "Yearly Gain (₹)": np.append([0], np.diff(balance))
+})
+st.dataframe(yearly_data.style.format({"Year-End Balance (₹)": "₹{:,.2f}", "Yearly Gain (₹)": "₹{:,.2f}"}))
 
 st.markdown("---")
 st.caption("Built with ❤️ using Streamlit")
